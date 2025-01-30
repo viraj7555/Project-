@@ -1,0 +1,145 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    background-color: #36a0a0;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* Main Container */
+.main-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Symptoms Section */
+.symptoms-section {
+    margin-bottom: 40px;
+}
+
+.symptoms-section h2 {
+    font-size: 1.8rem;
+    color: #2b7270;
+    margin-bottom: 20px;
+}
+
+.symptoms-grid {
+    display: flex;
+    gap: 20px;
+}
+
+.symptom-card {
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.symptom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Doctors Section */
+.doctors-section h2 {
+    font-size: 1.8rem;
+    color: #2b7270;
+    margin-bottom: 20px;
+}
+
+.doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.doctor-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.doctor-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #36a0a0;
+}
+
+.doctor-info h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.doctor-info p {
+    margin: 2px 0;
+    color: #555;
+}
+
+.doctor-info .rating {
+    color: #ff9800;
+    font-weight: 500;
+}
+
+.profile-btn {
+    background-color: #36a0a0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.profile-btn:hover {
+    background-color: #2b7270;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    background-color: #36a0a0;
+    color: white;
+    padding: 20px 0;
+    margin-top: 40px;
+}

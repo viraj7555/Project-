@@ -1,0 +1,79 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('healthcare-bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    line-height: 1.6;
+    position: relative; /* Ensure watermark appears correctly behind content */
+}
+
+/* Watermark for Diabetic Symbol */
+body::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    background: url('5935562.png') no-repeat center center;
+    background-size: 300px; /* Adjust size as needed */
+    width: 300px; /* Same as background-size */
+    height: 300px; /* Same as background-size */
+    opacity: 0.1; /* Subtle watermark effect */
+}
+
+/* Header Styles */
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #4CAF50;
+    color: #cbe9cc;
+}
+
+/* Section Styles */
+section {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 20px;
+}

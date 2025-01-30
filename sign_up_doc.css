@@ -1,0 +1,108 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('diabetes.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #2C7364;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+}
+
+.navbar a.login-btn {
+    background-color: #E34A64;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+/* Form Container */
+.form-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: rgba(255, 255, 255, 0.15); /* Light translucent tint matching the provided image */
+    padding: 30px 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.form-container h1 {
+    margin-bottom: 25px;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Input Styles */
+.input-group {
+    margin-bottom: 20px; /* Increased spacing between text boxes */
+    text-align: left;
+}
+
+.name-input-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.name-prefix {
+    background-color: rgba(255, 255, 255, 0.2); /* Translucent box matching image tint */
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.2); /* Translucent background for text boxes */
+    color: white; /* White text for visibility */
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Placeholder in white with transparency */
+}
+
+input:focus {
+    outline: none;
+    border-color: #2C7364;
+}
+
+/* Button Styles */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2C7364;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #23594C;
+}

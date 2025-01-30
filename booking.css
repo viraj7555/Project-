@@ -1,0 +1,245 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: teal;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.navbar .dropdown-menu {
+    position: fixed;
+    right: 0; /* Aligns the dropdown to the right side of the page */
+}
+
+
+
+.menu-button {
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.menu-button:hover {
+    background-color: rgb(2, 71, 71);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+    color: teal;
+}
+
+.menu-button:focus + .dropdown-content,
+.menu-button:hover + .dropdown-content {
+    display: block;
+}
+
+/* Booking Page */
+.booking-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Doctor Info Section */
+.doctor-info {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.doctor-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.doctor-info h2 {
+    margin: 10px 0;
+    font-size: 1.8rem;
+}
+
+.doctor-info p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Booking Form */
+.booking-form {
+    flex: 2;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.booking-form h3 {
+    font-size: 1.2rem;
+    margin: 15px 0;
+}
+
+/* Calendar */
+.calendar {
+    margin-top: 20px;
+}
+
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-nav button {
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.calendar-nav button:hover {
+    background-color: teal;
+}
+
+.day-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.calendar-dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.date {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+.date:hover {
+    background-color: #d9ebff;
+}
+
+.date.selected {
+    background-color: teal;
+    color: white;
+}
+
+.empty-date {
+    visibility: hidden;
+}
+
+/* Time Slots */
+.time-slots {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.time-slots button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.time-slots button:hover {
+    background-color: #d9ebff;
+}
+
+.time-slots button.selected {
+    background-color: teal;
+    color: white;
+}
+
+/* Selected Info */
+.selected-box {
+    background-color: #eef7ff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Confirm Button */
+.confirm-btn {
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.confirm-btn:hover {
+    background-color: #005bb5;
+}

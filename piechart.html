@@ -1,0 +1,75 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis - Diabetes Monitoring</title>
+    <link rel="stylesheet" href="/static/style1.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="home-link"><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="analysis-title">
+        <h1>Analysis</h1>
+    </div>
+    <section>
+        <div class="content-container">
+            <!-- Pie Chart in Center -->
+            <div class="pie-container">
+                <canvas id="pieChart" width="200" height="200"></canvas>
+            </div>
+
+            <!-- Parameter Info Block on Right -->
+            <div class="parameter-info">
+                <h3>Parameters and Colors:</h3>
+                <ul>
+                    <li><span class="color-box sodium"></span> Sodium</li>
+                    <li><span class="color-box potassium"></span> Potassium</li>
+                    <li><span class="color-box Calcium"></span> Calcium</li>
+                    <li><span class="color-box magnesium"></span> Magnesium</li>
+                    <li><span class="color-box other"></span> Other</li>
+                </ul>
+            </div>
+        </div>
+        <div class="button-container">
+            <button onclick="location.href='medication.html'">Medication</button>
+            <button onclick="location.href='workout.html'">Workout</button>
+            <button onclick="location.href='consult.html'">Consult Doctor</button>
+        </div>
+        <p class="status-text"><strong>Status:</strong> Hyperglycemia</p>
+    </section>
+
+    <script>
+        // Updated Pie Chart to include Magnesium
+        const ctx = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Sodium', 'Potassium', 'Calcium', 'Magnesium', 'Other'],
+                datasets: [{
+                    label: 'Electrolytes',
+                    data: [35, 25, 15, 15, 10], // Adjusted values to include Magnesium
+                    backgroundColor: [
+                        '#ff6384', // Sodium
+                        '#36a2eb', // Potassium
+                        '#ffcd56', // Chloride
+                        '#9966ff', // Magnesium
+                        '#4bc0c0'  // Other
+                    ],
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+

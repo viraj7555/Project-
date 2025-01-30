@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Base styling for body and overall layout */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header section with logo and profile navigation */
+        header {
+            background-color: #2b7270; 
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+        }
+
+        header .logout-btn {
+            padding: 8px 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        header .logout-btn:hover {
+            background-color: #d43f3f;
+        }
+
+        /* Profile container */
+        .profile-container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.2); 
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container h2 {
+            font-size: 2.2rem;
+            color: #36a0a0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .profile-container .profile-field {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-container .profile-field span {
+            font-weight: bold;
+            color: #5b5b5b;
+        }
+
+        .medication-diet {
+            display: none;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: #2b2b2b; /* Darker color for text */
+        }
+
+        .medication-diet h3 {
+            font-size: 1.5rem;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            margin-top: 2rem;
+        }
+
+        .button-container button {
+            padding: 12px 20px;
+            background-color: #2b7270;
+            color: #ffffff;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+            margin: 10px;
+        }
+
+        .button-container button:hover {
+            background-color: #36a0a0;
+            transform: translateY(-3px);
+        }
+
+        .button-container button:active {
+            background-color: #2b7270;
+            transform: translateY(0);
+        }
+
+        /* Consult Doctor button style */
+        .consult-doctor-btn {
+            background-color: #c02853; /* Magenta color */
+            padding: 12px 20px;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .consult-doctor-btn:hover {
+            background-color: #e04163; /* Lighter magenta on hover */
+        }
+
+        .consult-doctor-btn:active {
+            background-color: #c02853;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Profile</h1>
+        <button id="logout-btn" class="logout-btn" onclick="handleLogout()">Logout</button>
+    </header>
+   
+    <div class="profile-container">
+        <h2>Welcome, <span>{{ name }}</span></h2>
+        <div class="profile-field">
+            <span>Email:</span><span>{{ email }}</span>
+        </div>
+        <div class="profile-field">
+            <span>Phone:</span><span>{{ phone }}</span>
+        </div>
+        <div class="profile-field">
+            <span>Gender:</span><span>{{ gender }}</span>
+        </div>
+        <div class="profile-field">
+            <span>Predicted Diabetes Type:</span><span id="diabetes-type">{{ diabetes_type }}</span>
+        </div>
+
+        <div class="button-container">
+            <button id="suggest-medication-btn">Suggest Medication</button>
+        </div>
+
+        <!-- Medication and Diet Information -->
+        <div id="medication-diet" class="medication-diet">
+            <h3>Suggested Medication & Diet:</h3>
+            <p id="medication-info"></p>
+            <p id="diet-info"></p>
+        </div>
+
+        <!-- Consult Doctor button hidden initially -->
+        <div id="consult-doctor-container" style="display: none;">
+            <button class="consult-doctor-btn" onclick="consultDoctor()">Consult Doctor</button>
+        </div>
+    </div>
+
+    <script>
+        // Function for loading diabetes type and suggesting medication
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const diabetesType = urlParams.get("diabetes_type");
+
+            if (diabetesType) {
+                document.getElementById("diabetes-type").textContent = diabetesType;
+
+                // Define medication and diet information based on diabetes type
+                let medicationInfo = "";
+                let dietInfo = "";
+
+                switch (diabetesType) {
+                    case "Normal":
+                        medicationInfo = "No medication required. Stay active, eat healthily.";
+                        dietInfo = "Consume whole grains, lean protein, and vegetables.";
+                        break;
+                    case "Hypoglycemia":
+                        medicationInfo = "Consume 15g of fast-acting carbs. Consult doctor for a treatment plan.";
+                        dietInfo = "Eat balanced meals with healthy fats and complex carbs.";
+                        break;
+                    case "Hyperglycemia":
+                        medicationInfo = "Insulin or medication like Metformin may be required.";
+                        dietInfo = "Low carb meals, hydrate well, and exercise regularly.";
+                        break;
+                }
+
+                // On clicking the Suggest Medication button, show the content
+                document.getElementById("suggest-medication-btn").addEventListener("click", function () {
+                    this.style.display = "none"; // Hide the Suggest Medication button
+                    const medicationDietDiv = document.getElementById("medication-diet");
+                    medicationDietDiv.style.display = "block"; // Show the suggested info
+
+                    // Update the content dynamically
+                    document.getElementById("medication-info").textContent = medicationInfo;
+                    document.getElementById("diet-info").textContent = dietInfo;
+
+                    // Show the Consult Doctor button after medication suggestion
+                    const consultDoctorContainer = document.getElementById("consult-doctor-container");
+                    consultDoctorContainer.style.display = "block"; // Show the Consult Doctor button
+                });
+            }
+        });
+
+        // Handle logout logic
+        async function handleLogout() {
+            try {
+                const response = await fetch("/logout", { method: "POST" });
+
+                if (response.ok) {
+                    alert("Successfully logged out!");
+                    window.location.href = "/login"; // Redirect to login page
+                } else {
+                    alert("Logout failed. Please try again.");
+                }
+            } catch (error) {
+                console.error("Logout Error:", error);
+                alert("An error occurred during logout.");
+            }
+        }
+
+        // Handle Consult Doctor button click
+        function consultDoctor() {
+            // Redirect to the consultation page
+            window.location.href = "/doctor"; // Update this URL as per your application routing
+        }
+    </script>
+</body>
+</html>

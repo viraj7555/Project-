@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profiles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/doctor.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Find Your Doctor</h1>
+    </header>
+    <main class="main-container">
+        <section class="doctors-section">
+            <h2>Top Rated Doctors</h2>
+            <div class="doctors-grid">
+                <!-- Each doctor card onClick calls the loadDoctorProfile function and redirects to booking page -->
+                <div class="doctor-card" onclick="loadDoctorProfile('Dr. Sammed Patil', 'Diabetologist', 'purush_vaidya_1.jpg', 15, 4.9, 583)">
+                    <img src="/static/purush_vaidya_2.jpg" alt="Dr. Sammed Patil">
+                    <div class="doctor-info">
+                        <h3>Dr. Sammed Patil</h3>
+                        <p>Diabetologist</p>
+                        <p>Practice: 15 years</p>
+                        <p class="rating">⭐ 4.9 (583 reviews)</p>
+                        <button class="profile-btn">Open Profile</button>
+                    </div>
+                </div>
+                <div class="doctor-card" onclick="loadDoctorProfile('Dr. Pratik Patil', 'Endocrinologist', 'purush_vaidya_2.jpg', 7, 4.8, 348)">
+                    <img src="/static/purush_vaidya_1.jpg" alt="Dr. Pratik Patil">
+                    <div class="doctor-info">
+                        <h3>Dr. Pratik Patil</h3>
+                        <p>Endocrinologist</p>
+                        <p>Practice: 7 years</p>
+                        <p class="rating">⭐ 4.8 (348 reviews)</p>
+                        <button class="profile-btn">Open Profile</button>
+                    </div>
+                </div>
+                <div class="doctor-card" onclick="loadDoctorProfile('Dr. Shreya Chougule', 'Dietitian', 'stree_vaidya_1.jpg', 11, 4.7, 125)">
+                    <img src="/static/stree_vaidya_2.jpg" alt="Dr. Shreya Chougule">
+                    <div class="doctor-info">
+                        <h3>Dr. Shreya Chougule</h3>
+                        <p>Dietitian</p>
+                        <p>Practice: 11 years</p>
+                        <p class="rating">⭐ 4.7 (125 reviews)</p>
+                        <button class="profile-btn">Open Profile</button>
+                    </div>
+                </div>
+                <div class="doctor-card" onclick="loadDoctorProfile('Dr. Aarya Deshmukh', 'Diabetologist', 'stree_vaidya_2.jpg', 11, 4.7, 125)">
+                    <img src="/static/stree_vaidya_1.jpg" alt="Dr. Aarya Deshmukh">
+                    <div class="doctor-info">
+                        <h3>Dr. Aarya Deshmukh</h3>
+                        <p>Diabetologist</p>
+                        <p>Practice: 11 years</p>
+                        <p class="rating">⭐ 4.7 (125 reviews)</p>
+                        <button class="profile-btn">Open Profile</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>© 2024 Find Your Doctor. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Store doctor profile data in localStorage and redirect to booking page
+        function loadDoctorProfile(name, specialization, image, years, rating, reviews) {
+            localStorage.setItem('doctorName', name);
+            localStorage.setItem('doctorSpecialization', specialization);
+            localStorage.setItem('doctorImage', image);
+            localStorage.setItem('doctorYears', years);
+            localStorage.setItem('doctorRating', rating);
+            localStorage.setItem('doctorReviews', reviews);
+            
+            window.location.href = "booking.html"; // Redirect to booking page
+        }
+    </script>
+</body>
+</html>

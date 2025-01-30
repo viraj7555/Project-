@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication - Diabetes Monitoring</title>
+    <link rel="stylesheet" href="/static/medication.css">
+    <script>
+        // Function to dynamically populate medication tips based on status
+        document.addEventListener("DOMContentLoaded", function () {
+            const status = sessionStorage.getItem("status");
+            const medicationList = document.getElementById("medication-list");
+            const statusText = document.getElementById("status-text");
+
+            // Define medication tips for each status
+            const medicationTips = {
+                "Normal Range": [
+                    "Maintain a balanced diet.",
+                    "Exercise regularly.",
+                    "Monitor blood glucose levels daily.",
+                    "Stay hydrated.",
+                    "Avoid excessive sugar intake.",
+                    "Consume more whole grains.",
+                    "Include fiber-rich foods.",
+                    "Get enough sleep.",
+                    "Manage stress effectively.",
+                    "Avoid skipping meals."
+                ],
+                "Hypoglycemia": [
+                    "Carry glucose tablets or candies.",
+                    "Eat small, frequent meals.",
+                    "Avoid alcohol on an empty stomach.",
+                    "Check your blood sugar often.",
+                    "Consume foods rich in complex carbs.",
+                    "Keep a balanced intake of proteins and fats.",
+                    "Reduce high-intensity exercise until stable.",
+                    "Follow your doctor's insulin or medication adjustments.",
+                    "Learn to recognize early symptoms of hypoglycemia.",
+                    "Have a detailed action plan for emergencies."
+                ],
+                "Hyperglycemia": [
+                    "Drink plenty of water to stay hydrated.",
+                    "Exercise moderately to lower blood sugar.",
+                    "Avoid sugary and high-carb foods.",
+                    "Take prescribed diabetes medications on time.",
+                    "Monitor blood sugar levels regularly.",
+                    "Adjust insulin dosage under a doctor’s guidance.",
+                    "Follow a low-glycemic index diet.",
+                    "Avoid stress and practice relaxation techniques.",
+                    "Consume more leafy greens and non-starchy vegetables.",
+                    "Consult a healthcare provider for persistent high sugar levels."
+                ]
+            };
+
+            // Display status and corresponding tips
+            if (status && medicationTips[status]) {
+                statusText.textContent = `Status: ${status}`;
+                medicationTips[status].forEach(tip => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = tip;
+                    medicationList.appendChild(listItem);
+                });
+            } else {
+                statusText.textContent = "Status: Unknown";
+                const listItem = document.createElement("li");
+                listItem.textContent = "No specific tips available.";
+                medicationList.appendChild(listItem);
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="piechart.html">Back</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Medication Tips</h2>
+        <h3 id="status-text">Status: Loading...</h3>
+        <ul id="medication-list"></ul>
+    </section>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrolyte Analysis</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .logout-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            padding: 8px 12px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .logout-btn:hover {
+            background-color: #d43f3f;
+        }
+        .error {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fdecea;
+            border: 1px solid #f44336;
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/index">Home</a></li>
+            </ul>
+        </nav>
+        <button id="logout-btn" class="logout-btn" onclick="handleLogout()">Logout</button>
+    </header>
+
+    <section>
+        <h2>Electrolyte Analysis</h2>
+        <form id="electrolyte-form">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <br>
+            <label for="age_group">Age Group:</label>
+            <select id="age_group" name="age_group" required>
+                <option value="" disabled selected>Select age group</option>
+                <option value="0-25">0-25</option>
+                <option value="26-50">26-50</option>
+                <option value="50+">50+</option>
+            </select>
+            <br>
+            <label for="na">Sodium (Na) Reading (mmol/L):</label>
+            <input type="number" id="na" name="na" step="0.001" required placeholder="e.g., 135.000">
+            <br>
+            <label for="k">Potassium (K) Reading (mmol/L):</label>
+            <input type="number" id="k" name="k" step="0.001" required placeholder="e.g., 4.500">
+            <br>
+            <label for="cl">Chloride (Cl) Reading (mmol/L):</label>
+            <input type="number" id="cl" name="cl" step="0.001" required placeholder="e.g., 100.000">
+            <br>
+            <button type="submit">Analyze</button>
+        </form>
+
+        <div id="error-container" class="error" style="display:none;">
+            <h3>Error:</h3>
+            <p id="error-message"></p>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById("electrolyte-form").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const gender = document.getElementById("gender").value;
+            const age_group = document.getElementById("age_group").value;
+            const na = parseFloat(document.getElementById("na").value);
+            const k = parseFloat(document.getElementById("k").value);
+            const cl = parseFloat(document.getElementById("cl").value);
+
+            if (!gender || !age_group || isNaN(na) || isNaN(k) || isNaN(cl)) {
+                showError("Please fill all fields correctly.");
+                return;
+            }
+
+            try {
+                const response = await fetch("/predict", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ gender, age_group, na, k, cl }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    // Redirect with prediction result
+                    window.location.href = `/profile?diabetes_type=${encodeURIComponent(data.prediction)}`;
+                } else {
+                    const errorData = await response.json();
+                    showError(errorData.error || "An error occurred during prediction.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                showError("An error occurred while connecting to the server.");
+            }
+        });
+
+        function showError(message) {
+            const errorContainer = document.getElementById("error-container");
+            errorContainer.style.display = "block";
+            document.getElementById("error-message").textContent = message;
+        }
+
+        async function handleLogout() {
+            try {
+                const response = await fetch("/logout", { method: "POST" });
+                if (response.ok) {
+                    alert("Successfully logged out!");
+                    window.location.href = "/login";
+                } else {
+                    alert("Logout failed. Please try again.");
+                }
+            } catch (error) {
+                console.error("Logout Error:", error);
+                alert("An error occurred during logout.");
+            }
+        }
+    </script>
+</body>
+</html>
